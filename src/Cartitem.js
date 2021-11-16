@@ -12,7 +12,36 @@ class CartItem extends React.Component {
     }
 
     increaseQuantity = () => {
+        //this.state.qty++;
+        //setState = shallow merging happens here, i.e., react will only chng qty & will not touch other values & will automatically re-render our component
 
+        //2 forms =>
+        //setState form 1
+        this.setState({
+            qty: this.state.qty + 1
+        });
+
+        //setState form 2
+        /*this.setState ((prevState) => {
+            return {
+                qty: prevState.qty + 1
+            }
+        });*/
+        //console.log(this.state.qty);
+    }
+
+    decreaseQuantity = () => {
+        if (this.state.qty != 0) {
+            this.setState({
+                qty: this.state.qty - 1
+            });
+        }
+    }
+
+    deleteQuantity = () => {
+        this.setState({
+            qty: 0
+        });
     }
 
     render() {
@@ -29,17 +58,19 @@ class CartItem extends React.Component {
                     <div className="cart-item-actions">
                         {/*buttons*/}
                         <img alt="increase"
-                        className="action-icons" 
-                        src="https://cdn-icons.flaticon.com/png/512/3303/premium/3303893.png?token=exp=1636986152~hmac=b7c09d07334c133943e324f37715fd3e"
-                        onClick= {this.increaseQuantity}
+                            className="action-icons"
+                            src="https://cdn-icons.flaticon.com/png/512/3303/premium/3303893.png?token=exp=1636986152~hmac=b7c09d07334c133943e324f37715fd3e"
+                            onClick={this.increaseQuantity}
                         />
                         <img alt="decrease"
-                        className="action-icons"
-                        src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                            className="action-icons"
+                            src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                            onClick={this.decreaseQuantity}
                         />
                         <img alt="delete"
-                        className="action-icons"
-                        src="https://cdn-icons.flaticon.com/png/512/3569/premium/3569930.png?token=exp=1636986179~hmac=e1fdcca6ed35446ca395dc34634f89aa"
+                            className="action-icons"
+                            src="https://cdn-icons.flaticon.com/png/512/3569/premium/3569930.png?token=exp=1636986179~hmac=e1fdcca6ed35446ca395dc34634f89aa"
+                            onClick={this.deleteQuantity}
                         />
                     </div>
                 </div>
