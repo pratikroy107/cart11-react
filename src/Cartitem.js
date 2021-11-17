@@ -14,6 +14,7 @@ class CartItem extends React.Component {
     increaseQuantity = () => {
         //this.state.qty++;
         //setState = shallow merging happens here, i.e., react will only chng qty & will not touch other values & will automatically re-render our component
+        //setState is asynchronous- if i print qty value after setState is called we'll get previous value... but if called along with setState by putting comma, then value will be the new
 
         //2 forms =>
         //setState form 1
