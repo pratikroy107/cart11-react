@@ -1,6 +1,7 @@
 import React from 'react';
 
 class CartItem extends React.Component {
+    //creating default state in constructor
     constructor() {
         super();
         this.state = {
@@ -10,6 +11,9 @@ class CartItem extends React.Component {
             img: ''
         }
     }
+
+    //either bind like this(below) or use arrow func... never use normal function
+    // this.increaseQuantity = this.increaseQuantity.bind(this);
 
     increaseQuantity = () => {
         //this.state.qty++;
@@ -32,7 +36,7 @@ class CartItem extends React.Component {
     }
 
     decreaseQuantity = () => {
-        if (this.state.qty != 0) {
+        if (this.state.qty !== 0) {
             this.setState({
                 qty: this.state.qty - 1
             });
