@@ -2,15 +2,6 @@ import React from 'react';
 
 class CartItem extends React.Component {
     //creating default state in constructor
-    constructor() {
-        super();
-        this.state = {
-            price: 999,
-            title: 'Phone',
-            qty: 1,
-            img: ''
-        }
-    }
 
     //either bind like this(below) or use arrow func... never use normal function
     // this.increaseQuantity = this.increaseQuantity.bind(this);
@@ -50,7 +41,8 @@ class CartItem extends React.Component {
     }
 
     render() {
-        const { price, title, qty } = this.state;
+        //console.log("this.pros => ", this.props);
+        const { price, title, qty} = this.props.product;
         return (
             <div className="cart-item">
                 <div className="left-block">
