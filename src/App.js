@@ -46,7 +46,7 @@ class App extends React.Component {
   handleDecreaseQuantity = (product) => {
     const { products } = this.state;
     const index = products.indexOf(product);
-    if (products[index].qty != 0) {
+    if (products[index].qty !== 0) {
       products[index].qty -= 1;
     }
     this.setState({
@@ -64,38 +64,40 @@ class App extends React.Component {
   }
 
   getCartCount = () => {
-  const { products } = this.state;
-  let count = 0;
-  products.forEach((product) => {
-    count += product.qty;
-  })
-  return count;
-}
+    const { products } = this.state;
+    let count = 0;
+    products.forEach((product) => {
+      count += product.qty;
+    })
+    return count;
+  }
 
-getCartTotal = () => {
-  const {products} = this.state;
-  let cartTotal = 0;
-  products.map((product) => {
-    cartTotal += product.qty * product.price
-  })
-  return cartTotal;
-}
+  getCartTotal = () => {
+    const { products } = this.state;
+    let cartTotal = 0;
+    products.map((product) => {
+      if (product.qty > 0)
+        cartTotal += product.qty * product.price
+      return '';
+    });
+    return cartTotal;
+  }
 
-render() {
-  const { products } = this.state;
-  return (
-    <div className="App">
-      <Navbar count={this.getCartCount()} />
-      <Cart
-        products={products}
-        onIncreaseQuantity={this.handleIncreaseQuantity}
-        onDecreaseQuantity={this.handleDecreaseQuantity}
-        onDeleteProduct={this.handleDeleteProduct}
-      />
-      <div style={{fontWeight: 700, padding: 10, fontSize: 30}}>TOTAL : ₹ {this.getCartTotal()}</div>
-    </div>
-  );
-}
+  render() {
+    const { products } = this.state;
+    return (
+      <div className="App">
+        <Navbar count={this.getCartCount()} />
+        <Cart
+          products={products}
+          onIncreaseQuantity={this.handleIncreaseQuantity}
+          onDecreaseQuantity={this.handleDecreaseQuantity}
+          onDeleteProduct={this.handleDeleteProduct}
+        />
+        <div style={{ fontWeight: 700, padding: 10, fontSize: 30 }}>TOTAL : ₹ {this.getCartTotal()}</div>
+      </div>
+    );
+  }
 }
 
 export default App;
